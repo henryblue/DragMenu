@@ -1,5 +1,29 @@
 apply plugin: 'com.android.library'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'DragMenu'
+
+    publishedGroupId = 'com.app.dragmenu'
+    libraryName = 'library'
+    artifact = 'DragMenu'
+
+    libraryDescription = 'support to drag menu'
+
+    siteUrl = 'https://github.com/henry-blue/DragMenu'
+    gitUrl = 'https://github.com/henry-blue/DragMenu.git'
+
+    libraryVersion = '0.9.3'
+
+    developerId = 'henry'
+    developerName = 'henry-blue'
+    developerEmail = '18363002785@163.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.0"

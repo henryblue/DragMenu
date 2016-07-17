@@ -10,10 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-/**
- * Created by henry-blue on 2016/7/16.
- */
-
 public class DragMenuLayout extends FrameLayout {
 
     private Context mContext;
@@ -32,7 +28,7 @@ public class DragMenuLayout extends FrameLayout {
 
     //mark current status
     public static enum Status {
-        Close, Open, Draging;
+        Close, Open, Dragging
     }
 
     public DragMenuLayout(Context context) {
@@ -51,7 +47,7 @@ public class DragMenuLayout extends FrameLayout {
     }
 
     private void init() {
-        mDragHelper = ViewDragHelper.create(this, 1.0f, new DragCallback());
+        mDragHelper = ViewDragHelper.create(this, new DragCallback());
     }
 
     private void initAttributeSet(AttributeSet attrs) {
@@ -80,7 +76,7 @@ public class DragMenuLayout extends FrameLayout {
             throw new IllegalStateException("Your ViewGroup must have two child at least.");
         }
         if(!(getChildAt(0) instanceof ViewGroup && getChildAt(1) instanceof ViewGroup)){
-            throw new IllegalArgumentException("Your children must be an instance of ViewGroup");
+            throw new IllegalArgumentException("Your child must be an instance of ViewGroup");
         }
 
         mLeftContent = (ViewGroup) getChildAt(0);
@@ -190,10 +186,14 @@ public class DragMenuLayout extends FrameLayout {
             }
         }
         //start animation
-        animViews(percent);
+        if (mStyle == 0) {
+            animTranslateViews(percent);
+        } else {
+            animScaleViews(percent);
+        }
     }
 
-    private void animViews(float percent) {
+    private void animScaleViews(float percent) {
         mLeftContent.setScaleX(evaluate(percent, 0.5f, 1.0f));
         mLeftContent.setScaleY(evaluate(percent, 0.5f, 1.0f));
         mLeftContent.setTranslationX(evaluate(percent, -mScreenWidth / 2, 0));
@@ -201,6 +201,10 @@ public class DragMenuLayout extends FrameLayout {
 
         mRightContent.setScaleX(evaluate(percent, 1.0f, 0.85f));
         mRightContent.setScaleY(evaluate(percent, 1.0f, 0.85f));
+    }
+
+    private void animTranslateViews(float percent) {
+        mLeftContent.setTranslationX(evaluate(percent, -mDragRange / 2, 0));
     }
 
     public Float evaluate(float fraction, Number startValue, Number endValue) {
@@ -214,7 +218,7 @@ public class DragMenuLayout extends FrameLayout {
         }else if (percent == 1.0f) {
             return Status.Open;
         }
-        return Status.Draging;
+        return Status.Dragging;
     }
 
     public interface OnDragStatusChangeListener {

@@ -3,8 +3,8 @@
     <declare-styleable name="DragMenuLayout">
         <attr name="dragRange" format="float" />
         <attr name="style">
-        <enum name="Scale" value="0" />
-        <enum name="Translate" value="1" />
+        <enum name="Translate" value="0" />
+        <enum name="Scale" value="1" />
         </attr>
     </declare-styleable>
 </resources>
