@@ -27,7 +27,7 @@ public class DragMenuLayout extends FrameLayout {
     private OnDragStatusChangeListener mListener;
 
     //mark current status
-    public static enum Status {
+    public enum Status {
         Close, Open, Dragging
     }
 
