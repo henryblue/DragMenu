@@ -1,13 +1,13 @@
 # DragMenu
 Drag Menu with scale or translate. Project for 4.0+ version
-##ScreenShot
+## ScreenShot
 <p>
 <img src="scale.gif" />
 &nbsp;&nbsp;&nbsp;
 <img src="tranlate.gif"/>
 </p>
 
-##Using
+## Using
 First you can add gradle dependency with command :
 ```groovy
   repositories {
